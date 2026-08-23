@@ -1,31 +1,100 @@
-# 🇰🇷 Kov-Sec — 리버스 엔지니어링 방지 APK 보호
+<div align="center">
 
-**웹사이트:** [https://kov-sec.com](https://kov-sec.com) | [🏠 모든 언어로 돌아가기](README.md)
+# 🛡️ Kov-Sec — 리버스 엔지니어링 방지 APK 보호
 
-**Kov-Sec**은 고급 Android APK 보호 플랫폼입니다. 앱의 바이트코드를 내부 가상 머신으로 변환하고 리버스 엔지니어링, 변조, 해킹으로부터 보호하는 여러 보호 계층을 적용합니다.
+### 🇰🇷 한국어
 
-## 기능
-- **VM 무결성** — 앱 코드를 내부 VM 바이트코드로 변환 (계층형 보호)
-- **안티 후크** — FRIDA, Xposed, Zygisk, Substrate 탐지 및 차단
-- **안티 디버그** — 디버거 탐지 (gdb, lldb, Android Studio)
-- **안티 에뮬레이터** — BlueStacks, Nox, LDPlayer, Genymotion 탐지
-- **루트 감지** — Magisk, KernelSU, APatch, SuSFS, Shamiko 탐지
-- **서명 확인** — 가짜 서명으로 재패키징 방지
-- **DEX 주입 감지** — APK 외부에서 로드된 DEX 감지
-- **ADB 가드** — ADB 액세스 차단
-- **라이브러리 주입 감지** — 주입된 라이브러리 감지
-- **로그 제거** — DEX에서 Log.* 호출 제거
+---
 
-## 지원 형식
-**APK** (모든 사용자) | **AAB** (VIP 사용자)
+| 🏠 [Main / Principal](README.md) |
 
-## 지원 아키텍처
-arm64-v8a, armeabi-v7a, x86, x86_64
+---
 
-## 시작하기
-1. [https://kov-sec.com](https://kov-sec.com) 방문
-2. APK 또는 AAB 업로드
-3. 보호 옵션 선택
-4. 보호된 APK 다운로드
+## 🌐 Website / Sitio web
 
-© Kov-Sec. 모든 권리 보유.
+### [👉 https://kov-sec.com](https://kov-sec.com)
+
+---
+
+## ✨ Introduction
+
+**Kov-Sec**은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트코드를 **내부 가상 머신 (VM)**으로 변환하고 리버스 엔지니어링, 변조, 해킹을 극도로 어렵게 만드는 여러 보호 계층을 적용합니다.
+
+---
+
+## ✅ Google Play Store Compatibility
+
+앱은 **Google Play 스토어에서 100% 기능**을 유지합니다 — Play 스토어 요구사항, App Bundle (AAB), APK 배포와 완벽 호환. APK 및 AAB, 모든 서명 방식 (V1/V2/V3), Android 7.0+ (API 21+), 모든 아키텍처 (arm64-v8a, armeabi-v7a, x86, x86_64) 지원.
+
+---
+
+## 🛡️ Core Features
+
+### 🔐 VM 무결성
+중요 코드를 **내부 VM 바이트코드**로 변환 — 공격자가 원래 로직을 읽을 수 없습니다.
+
+### 🪝 안티 후크
+FRIDA, Xposed, LSPosed, EdXposed, Zygisk, Substrate 차단.
+
+### 🐛 안티 디버그
+gdb, lldb, Android Studio 디버거 및 ptrace 감지.
+
+### 📱 안티 에뮬레이터
+BlueStacks, Nox, LDPlayer, MEmu, Genymotion 감지.
+
+### 👑 루트 감지
+Magisk, KernelSU, APatch, SuSFS, Shamiko + 고급 커널 스캔.
+
+### 🔑 서명 확인
+재패키징 및 가짜 서명 공격 방지 (V1+V2/V3).
+
+### 🧪 DEX 주입 감지
+실행 중 APK 외부에서 로드된 DEX 감지.
+
+### 🛡️ ADB 가드
+ADB 셸 액세스 차단.
+
+### 📚 라이브러리 주입 감지
+/proc/self/maps 스캔으로 주입된 라이브러리 감지.
+
+### 🗑️ 로그 제거
+DEX 파일에서 모든 Log.* 호출 제거.
+
+---
+
+## ➕ Optional Protections
+
+화면 공유 차단 | 키로거 차단 | 가짜 GPS 차단 | VPN/프록시 차단 | SSL 핀닝
+
+---
+
+## 📊 Supported Platforms
+
+| Format | Users | | Architecture | Support |
+|---|---|---|---|---|
+| **APK** | ✅ All | | **arm64-v8a** | ✅ |
+| **AAB** | 👑 VIP | | **armeabi-v7a** | ✅ |
+| | | | **x86** | ✅ |
+| | | | **x86_64** | ✅ |
+
+---
+
+## 🚀 How It Works
+
+```
+1. 📤 Upload your APK or AAB
+2. ⚙️ Select protection options
+3. 🔄 Kov-Sec converts your code to VM bytecode
+4. 🛡️ Protection layers are applied
+5. 📥 Download your protected app
+```
+
+---
+
+## 📄 License
+
+© Kov-Sec. All rights reserved.
+
+[**https://kov-sec.com**](https://kov-sec.com)
+
+</div>
