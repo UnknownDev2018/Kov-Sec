@@ -1,100 +1,157 @@
-<div align="center">
+# Kov-Sec — एंटी-रिवर्स इंजीनियरिंग APK सुरक्षा
 
-# 🛡️ Kov-Sec — एंटी-रिवर्स इंजीनियरिंग APK सुरक्षा
+**Website:** https://kov-sec.com | **[मुख्य](README.md)**
 
-### 🇮🇳 हिन्दी
+## हिन्दी
+
+Kov-Sec एक पेशेवर Android एप्लिकेशन सुरक्षा प्लेटफ़ॉर्म है। यह आपके ऐप के बाइटकोड को आंतरिक वर्चुअल मशीन (VM) में बदलता है और कई सुरक्षा परतें लागू करता है जो रिवर्स इंजीनियरिंग, छेड़छाड़ और हैकिंग को अत्यंत कठिन बनाती हैं। आपका ऐप Google Play Store पर 100% कार्यात्मक रहता है — Play Store आवश्यकताओं, App Bundles (AAB) और APK वितरण के साथ पूरी तरह संगत। APK और AAB, सभी सिग्नेचर योजनाओं (V1/V2/V3), Android 7.0+ (API 21+) और सभी आर्किटेक्चर का समर्थन करता है।
+
+
+## सुरक्षा विकल्प
+
+
+### 1) एंटी-हुक
+
+**यह क्या सुरक्षा करता है:** Detects and blocks hooking frameworks that modify your app's behavior in memory.
+
+**के खिलाफ:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
+
+**यह क्या करता है:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
+
+**किसे चाहिए:** Banking apps, games with currency, streaming apps.
+
+
+### 2) एंटी-डीबग
+
+**यह क्या सुरक्षा करता है:** Prevents dynamic debugging of the app.
+
+**के खिलाफ:** gdb, lldb, Android Studio debugger, ptrace.
+
+**यह क्या करता है:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
+
+**किसे चाहिए:** Apps with sensitive data, licenses, DRM, premium content.
+
+
+### 3) एंटी-एमुलेटर
+
+**यह क्या सुरक्षा करता है:** Detects that the app is NOT running on an emulator.
+
+**के खिलाफ:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
+
+**यह क्या करता है:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
+
+**किसे चाहिए:** Games, reward apps, dating apps, bonus apps.
+
+
+### 4) रूट डिटेक्शन
+
+**यह क्या सुरक्षा करता है:** Detects devices with root (superuser) permissions.
+
+**के खिलाफ:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
+
+**यह क्या करता है:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
+
+**किसे चाहिए:** Banking, competitive games, anti-fraud apps.
+
+
+### 5) VM अखंडता
+
+**यह क्या सुरक्षा करता है:** Protects the virtual machine (VM) that interprets your protected code.
+
+**के खिलाफ:** Memory patches, VM modification, hooks that redirect VM functions.
+
+**यह क्या करता है:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
+
+**किसे चाहिए:** Everyone — makes code hard to reverse. Always recommended.
+
+
+### 6) सिग्नेचर जांच
+
+**यह क्या सुरक्षा करता है:** Verifies the APK signature against repackaging.
+
+**के खिलाफ:** Repackaging with a fake key, malware pretending to be your app.
+
+**यह क्या करता है:** Calculates V1+V2/V3 hash. Compares disk vs RAM. Kills the app if mismatched.
+
+**किसे चाहिए:** Everyone — prevents app theft. Always recommended.
+
+
+### 7) DEX इंजेक्शन
+
+**यह क्या सुरक्षा करता है:** Detects DEX loaded that don't come from the APK.
+
+**के खिलाफ:** Dex injection at runtime, malicious classes loaded on the fly.
+
+**यह क्या करता है:** Lists ClassLoaders and DexFiles. Compares against legitimate dex. Kills the app if extra DEX.
+
+**किसे चाहिए:** Games, paid apps, premium content.
+
+
+### 8) ADB सुरक्षा
+
+**यह क्या सुरक्षा करता है:** Blocks ADB shell access on the device.
+
+**के खिलाफ:** ADB to view logs, extract files, inject commands.
+
+**यह क्या करता है:** Detects if ADB is enabled or USB debugging is connected. Kills the app if active.
+
+**किसे चाहिए:** Apps with sensitive info, payments, banking.
+
+
+### 9) लाइब्रेरी इंजेक्शन
+
+**यह क्या सुरक्षा करता है:** Detects libraries injected into the process.
+
+**के खिलाफ:** LD_PRELOAD, ptrace inject, hooking libraries, malware.
+
+**यह क्या करता है:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
+
+**किसे चाहिए:** Everyone — base of anti-hook. Always recommended.
+
+
+### 10) लॉग हटाएं
+
+**यह क्या सुरक्षा करता है:** Removes all Log.* calls from the DEX files.
+
+**के खिलाफ:** Hackers reading logs, malware reading logs, easier debugging.
+
+**यह क्या करता है:** Removes Log.v/d/i/w/e calls. Reduces size. Removes attacker info.
+
+**किसे चाहिए:** Everyone. Always recommended.
+
+
+## वैकल्पिक सुरक्षा
+
+
+### 11) स्क्रीन शेयर ब्लॉक
+
+स्क्रीन शेयर ब्लॉक — स्क्रीन रिकॉर्डिंग रोकता है. कैप्चर का पता लगाता है. वैकल्पिक.
+
+
+### 12) कीलॉगर ब्लॉक
+
+कीलॉगर ब्लॉक — कीलॉगर रोकता है. ओवरले का पता लगाता है. वैकल्पिक.
+
+
+### 13) फर्जी GPS ब्लॉक
+
+फर्जी GPS ब्लॉक — GPS धोखाधड़ी रोकता है. मॉक लोकेशन का पता लगाता है. वैकल्पिक.
+
+
+### 14) VPN / प्रॉक्सी ब्लॉक
+
+VPN / प्रॉक्सी ब्लॉक — VPN और MITM प्रॉक्सी का पता लगाता है. वैकल्पिक.
+
+
+### 15) SSL पिनिंग
+
+SSL पिनिंग — MITM रोकने के लिए प्रमाणपत्र पिन करता है. वैकल्पिक.
+
+
+## त्वरित सारांश
+
+VM Integrity, Signature Check, Lib Injection, Remove Logs — always recommended. Anti-Hook, Anti-Debug, Anti-Emulator, Root Detection, DEX Injection, ADB Guard — anti-fraud. Screen Share, Keylogger, Fake GPS, VPN/Proxy, SSL Pinning — optional.
 
 ---
 
-| 🏠 [Main / Principal](README.md) |
-
----
-
-## 🌐 Website / Sitio web
-
-### [👉 https://kov-sec.com](https://kov-sec.com)
-
----
-
-## ✨ Introduction
-
-**Kov-Sec** एक पेशेवर Android एप्लिकेशन सुरक्षा प्लेटफ़ॉर्म है। यह आपके ऐप के बाइटकोड को **आंतरिक वर्चुअल मशीन (VM)** में बदलता है और कई सुरक्षा परतें लागू करता है जो रिवर्स इंजीनियरिंग, छेड़छाड़ और हैकिंग को अत्यंत कठिन बनाती हैं।
-
----
-
-## ✅ Google Play Store Compatibility
-
-आपका ऐप **Google Play Store पर 100% कार्यात्मक** रहता है — Play Store आवश्यकताओं, App Bundles (AAB) और APK वितरण के साथ पूरी तरह संगत। APK और AAB, सभी सिग्नेचर योजनाओं (V1/V2/V3), Android 7.0+ (API 21+) और सभी आर्किटेक्चर (arm64-v8a, armeabi-v7a, x86, x86_64) का समर्थन करता है।
-
----
-
-## 🛡️ Core Features
-
-### 🔐 VM अखंडता
-महत्वपूर्ण कोड **आंतरिक VM बाइटकोड** में परिवर्तित — हमलावर मूल लॉजिक नहीं पढ़ सकते।
-
-### 🪝 एंटी-हुक
-FRIDA, Xposed, LSPosed, EdXposed, Zygisk, Substrate को रोकता है।
-
-### 🐛 एंटी-डीबग
-gdb, lldb, Android Studio डीबगर्स और ptrace का पता लगाता है।
-
-### 📱 एंटी-एमुलेटर
-BlueStacks, Nox, LDPlayer, MEmu, Genymotion का पता लगाता है।
-
-### 👑 रूट डिटेक्शन
-Magisk, KernelSU, APatch, SuSFS, Shamiko + उन्नत कर्नेल स्कैनिंग।
-
-### 🔑 सिग्नेचर जांच
-रीपैकेजिंग और नकली हस्ताक्षर हमलों को रोकता है (V1+V2/V3)।
-
-### 🧪 DEX इंजेक्शन डिटेक्शन
-रनटाइम पर APK के बाहर से लोड DEX का पता लगाता है।
-
-### 🛡️ ADB सुरक्षा
-ADB शेल एक्सेस रोकता है।
-
-### 📚 लाइब्रेरी इंजेक्शन डिटेक्शन
-इंजेक्टेड लाइब्रेरी के लिए /proc/self/maps स्कैन करता है।
-
-### 🗑️ लॉग हटाएं
-DEX फ़ाइलों से सभी Log.* कॉल हटाता है।
-
----
-
-## ➕ Optional Protections
-
-स्क्रीन शेयर ब्लॉक | कीलॉगर ब्लॉक | फर्जी GPS ब्लॉक | VPN/प्रॉक्सी ब्लॉक | SSL पिनिंग
-
----
-
-## 📊 Supported Platforms
-
-| Format | Users | | Architecture | Support |
-|---|---|---|---|---|
-| **APK** | ✅ All | | **arm64-v8a** | ✅ |
-| **AAB** | 👑 VIP | | **armeabi-v7a** | ✅ |
-| | | | **x86** | ✅ |
-| | | | **x86_64** | ✅ |
-
----
-
-## 🚀 How It Works
-
-```
-1. 📤 Upload your APK or AAB
-2. ⚙️ Select protection options
-3. 🔄 Kov-Sec converts your code to VM bytecode
-4. 🛡️ Protection layers are applied
-5. 📥 Download your protected app
-```
-
----
-
-## 📄 License
-
-© Kov-Sec. All rights reserved.
-
-[**https://kov-sec.com**](https://kov-sec.com)
-
-</div>
+© Kov-Sec. All rights reserved. https://kov-sec.com

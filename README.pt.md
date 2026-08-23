@@ -1,100 +1,157 @@
-<div align="center">
+# Kov-Sec — Proteção Anti-Engenharia Reversa para APK
 
-# 🛡️ Kov-Sec — Proteção Anti-Engenharia Reversa para APK
+**Website:** https://kov-sec.com | **[Principal](README.md)**
 
-### 🇧🇷 Português
+## Português
+
+Kov-Sec é uma plataforma profissional de proteção de aplicativos Android. Converte o bytecode do seu app em uma máquina virtual interna (VM) e aplica múltiplas camadas de proteção que tornam a engenharia reversa, adulteração e hacking extremamente difíceis. Seu app permanece 100% funcional no Google Play Store — totalmente compatível com os requisitos da Play Store, App Bundles (AAB) e distribuição APK. Suporta APK e AAB, todos os esquemas de assinatura (V1/V2/V3), Android 7.0+ (API 21+) e todas as arquiteturas (arm64-v8a, armeabi-v7a, x86, x86_64).
+
+
+## Opções de Proteção
+
+
+### 1) Anti-Hook
+
+**O que protege:** Detects and blocks hooking frameworks that modify your app's behavior in memory.
+
+**Contra:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
+
+**O que faz:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
+
+**Quem precisa:** Banking apps, games with currency, streaming apps.
+
+
+### 2) Anti-Debug
+
+**O que protege:** Prevents dynamic debugging of the app.
+
+**Contra:** gdb, lldb, Android Studio debugger, ptrace.
+
+**O que faz:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
+
+**Quem precisa:** Apps with sensitive data, licenses, DRM, premium content.
+
+
+### 3) Anti-Emulador
+
+**O que protege:** Detects that the app is NOT running on an emulator.
+
+**Contra:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
+
+**O que faz:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
+
+**Quem precisa:** Games, reward apps, dating apps, bonus apps.
+
+
+### 4) Detecção de Root
+
+**O que protege:** Detects devices with root (superuser) permissions.
+
+**Contra:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
+
+**O que faz:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
+
+**Quem precisa:** Banking, competitive games, anti-fraud apps.
+
+
+### 5) Integridade da VM
+
+**O que protege:** Protects the virtual machine (VM) that interprets your protected code.
+
+**Contra:** Memory patches, VM modification, hooks that redirect VM functions.
+
+**O que faz:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
+
+**Quem precisa:** Everyone — makes code hard to reverse. Always recommended.
+
+
+### 6) Verificação de Assinatura
+
+**O que protege:** Verifies the APK signature against repackaging.
+
+**Contra:** Repackaging with a fake key, malware pretending to be your app.
+
+**O que faz:** Calculates V1+V2/V3 hash. Compares disk vs RAM. Kills the app if mismatched.
+
+**Quem precisa:** Everyone — prevents app theft. Always recommended.
+
+
+### 7) Detecção de Injeção DEX
+
+**O que protege:** Detects DEX loaded that don't come from the APK.
+
+**Contra:** Dex injection at runtime, malicious classes loaded on the fly.
+
+**O que faz:** Lists ClassLoaders and DexFiles. Compares against legitimate dex. Kills the app if extra DEX.
+
+**Quem precisa:** Games, paid apps, premium content.
+
+
+### 8) Proteção ADB
+
+**O que protege:** Blocks ADB shell access on the device.
+
+**Contra:** ADB to view logs, extract files, inject commands.
+
+**O que faz:** Detects if ADB is enabled or USB debugging is connected. Kills the app if active.
+
+**Quem precisa:** Apps with sensitive info, payments, banking.
+
+
+### 9) Detecção de Injeção de Bibliotecas
+
+**O que protege:** Detects libraries injected into the process.
+
+**Contra:** LD_PRELOAD, ptrace inject, hooking libraries, malware.
+
+**O que faz:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
+
+**Quem precisa:** Everyone — base of anti-hook. Always recommended.
+
+
+### 10) Remover Logs
+
+**O que protege:** Removes all Log.* calls from the DEX files.
+
+**Contra:** Hackers reading logs, malware reading logs, easier debugging.
+
+**O que faz:** Removes Log.v/d/i/w/e calls. Reduces size. Removes attacker info.
+
+**Quem precisa:** Everyone. Always recommended.
+
+
+## Proteções Opcionais
+
+
+### 11) Bloqueio de Tela
+
+Bloqueio de Tela — Previne gravação e compartilhamento de tela. Detecta captura. Opcional — pode afetar recursos legítimos.
+
+
+### 12) Bloqueio de Keylogger
+
+Bloqueio de Keylogger — Bloqueia keyloggers e captura de entrada. Detecta overlays e serviços suspeitos. Opcional.
+
+
+### 13) Bloqueio de GPS Falso
+
+Bloqueio de GPS Falso — Previne falsificação de GPS. Detecta modo mock location. Opcional.
+
+
+### 14) Bloqueio de VPN / Proxy
+
+Bloqueio de VPN / Proxy — Detecta VPNs e proxies MITM. Detecta interfaces tun0/wg0. Opcional.
+
+
+### 15) SSL Pinning
+
+SSL Pinning — Fixa certificados contra MITM. O app só confia no seu certificado. Opcional.
+
+
+## Resumo Rápido
+
+VM Integrity, Signature Check, Lib Injection, Remove Logs — always recommended. Anti-Hook, Anti-Debug, Anti-Emulator, Root Detection, DEX Injection, ADB Guard — anti-fraud. Screen Share, Keylogger, Fake GPS, VPN/Proxy, SSL Pinning — optional.
 
 ---
 
-| 🏠 [Main / Principal](README.md) |
-
----
-
-## 🌐 Website / Sitio web
-
-### [👉 https://kov-sec.com](https://kov-sec.com)
-
----
-
-## ✨ Introduction
-
-**Kov-Sec** é uma plataforma profissional de proteção de aplicativos Android. Converte o bytecode do seu app em uma **máquina virtual interna (VM)** e aplica múltiplas camadas de proteção que tornam a engenharia reversa, adulteração e hacking extremamente difíceis.
-
----
-
-## ✅ Google Play Store Compatibility
-
-Seu app permanece **100% funcional no Google Play Store** — totalmente compatível com os requisitos da Play Store, App Bundles (AAB) e distribuição APK. Suporta APK e AAB, todos os esquemas de assinatura (V1/V2/V3), Android 7.0+ (API 21+) e todas as arquiteturas (arm64-v8a, armeabi-v7a, x86, x86_64).
-
----
-
-## 🛡️ Core Features
-
-### 🔐 Integridade da VM
-Código crítico convertido em **bytecode de VM interna** — atacantes não conseguem ler a lógica original.
-
-### 🪝 Anti-Hook
-Bloqueia FRIDA, Xposed, LSPosed, EdXposed, Zygisk, Substrate.
-
-### 🐛 Anti-Debug
-Detecta debuggers gdb, lldb, Android Studio e ptrace.
-
-### 📱 Anti-Emulador
-Detecta BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
-
-### 👑 Detecção de Root
-Detecta Magisk, KernelSU, APatch, SuSFS, Shamiko + varredura avançada do kernel.
-
-### 🔑 Verificação de Assinatura
-Evita reempacotamento e ataques de assinatura falsa (V1+V2/V3).
-
-### 🧪 Detecção de Injeção DEX
-Detecta DEX carregados de fora do APK em tempo de execução.
-
-### 🛡️ Proteção ADB
-Bloqueia acesso ADB.
-
-### 📚 Detecção de Injeção de Bibliotecas
-Varre /proc/self/maps por bibliotecas injetadas.
-
-### 🗑️ Remover Logs
-Remove todas as chamadas Log.* dos arquivos DEX.
-
----
-
-## ➕ Optional Protections
-
-Bloqueio de Tela | Bloqueio de Keylogger | Bloqueio de GPS Falso | Bloqueio VPN/Proxy | SSL Pinning
-
----
-
-## 📊 Supported Platforms
-
-| Format | Users | | Architecture | Support |
-|---|---|---|---|---|
-| **APK** | ✅ All | | **arm64-v8a** | ✅ |
-| **AAB** | 👑 VIP | | **armeabi-v7a** | ✅ |
-| | | | **x86** | ✅ |
-| | | | **x86_64** | ✅ |
-
----
-
-## 🚀 How It Works
-
-```
-1. 📤 Upload your APK or AAB
-2. ⚙️ Select protection options
-3. 🔄 Kov-Sec converts your code to VM bytecode
-4. 🛡️ Protection layers are applied
-5. 📥 Download your protected app
-```
-
----
-
-## 📄 License
-
-© Kov-Sec. All rights reserved.
-
-[**https://kov-sec.com**](https://kov-sec.com)
-
-</div>
+© Kov-Sec. All rights reserved. https://kov-sec.com
