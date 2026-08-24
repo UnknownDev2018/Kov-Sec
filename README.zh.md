@@ -14,7 +14,7 @@ Kov-Sec 是一个专业的 Android 应用保护平台。它将应用程序的字
 
 **针对:** Frida、Xposed、LSPosed、EdXposed、Zygisk、Substrate、Cydia。
 
-**作用:** 扫描内存映射中的 hook 库。比较系统调用检测 PLT/GOT hook。发现可疑则终止应用。
+**作用:** 扫描进程中的 hook。检测任何篡改企图。发现可疑则终止应用。
 
 ### 2) 反调试
 
@@ -22,7 +22,7 @@ Kov-Sec 是一个专业的 Android 应用保护平台。它将应用程序的字
 
 **针对:** gdb、lldb、Android Studio 调试器、ptrace。
 
-**作用:** 检测调试标志 (TracerPid)。检测 ptrace。发现调试器则终止应用。
+**作用:** 检测是否附加了调试器。检测 ptrace。发现调试器则终止应用。
 
 ### 3) 反模拟器
 
@@ -30,7 +30,7 @@ Kov-Sec 是一个专业的 Android 应用保护平台。它将应用程序的字
 
 **针对:** BlueStacks、Nox、LDPlayer、MEmu、Genymotion。
 
-**作用:** 检测模拟器属性、文件 (QEMU)、假传感器。发现则终止应用。
+**作用:** 检测只有模拟器才有的特征。发现则终止应用。
 
 ### 4) Root 检测
 
@@ -38,7 +38,7 @@ Kov-Sec 是一个专业的 Android 应用保护平台。它将应用程序的字
 
 **针对:** Magisk、KernelSU、APatch、SuSFS、Shamiko。
 
-**作用:** 搜索 su、busybox、magisk。检测挂载、tmpfs、超级调用。发现 root 则终止应用。
+**作用:** 使用多种先进技术检测已 root 的设备。发现 root 则终止应用。
 
 ### 5) VM 完整性
 
@@ -76,9 +76,9 @@ Kov-Sec 是一个专业的 Android 应用保护平台。它将应用程序的字
 
 **保护内容:** 检测注入到进程中的库。
 
-**针对:** LD_PRELOAD、ptrace 注入、hook 库、恶意软件。
+**针对:** 黑客注入的库、hook 库和恶意软件。
 
-**作用:** 扫描 /proc/self/maps。验证所有 .so 来自应用。发现可疑则终止应用。
+**作用:** 验证所有加载的库都来自应用本身。发现可疑则终止应用。
 
 ### 10) 移除日志
 

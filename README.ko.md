@@ -14,7 +14,7 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **대상:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**동작:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
+**동작:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
 
 ### 2) 안티 디버그
 
@@ -22,7 +22,7 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **대상:** gdb, lldb, Android Studio debugger, ptrace.
 
-**동작:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
+**동작:** Detects debug flag (). Detects ptrace. Kills the app if a debugger is found.
 
 ### 3) 안티 에뮬레이터
 
@@ -30,7 +30,7 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **대상:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
 
-**동작:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
+**동작:** Detects emulator properties, files (), fake sensors. Kills the app if detected.
 
 ### 4) 루트 감지
 
@@ -38,7 +38,7 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **대상:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
-**동작:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
+**동작:** Searches for su, , magisk. Detects mounts, , s. Kills the app if root.
 
 ### 5) VM 무결성
 
@@ -76,9 +76,9 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **보호 내용:** Detects libraries injected into the process.
 
-**대상:** LD_PRELOAD, ptrace inject, hooking libraries, malware.
+**대상:** , ptrace inject, hooking libraries, malware.
 
-**동작:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
+**동작:** Scans /self/maps. Verifies all .so come from the app. Kills the app if strange.
 
 ### 10) 로그 제거
 

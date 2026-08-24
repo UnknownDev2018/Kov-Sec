@@ -14,7 +14,7 @@ Kov-Sec is a professional Android application protection platform. It converts y
 
 **Against:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**What it does:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
+**What it does:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
 
 ### 2) Anti-Debug
 
@@ -22,7 +22,7 @@ Kov-Sec is a professional Android application protection platform. It converts y
 
 **Against:** gdb, lldb, Android Studio debugger, ptrace.
 
-**What it does:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
+**What it does:** Detects debug flag (). Detects ptrace. Kills the app if a debugger is found.
 
 ### 3) Anti-Emulator
 
@@ -30,7 +30,7 @@ Kov-Sec is a professional Android application protection platform. It converts y
 
 **Against:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
 
-**What it does:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
+**What it does:** Detects emulator properties, files (), fake sensors. Kills the app if detected.
 
 ### 4) Root Detection
 
@@ -38,7 +38,7 @@ Kov-Sec is a professional Android application protection platform. It converts y
 
 **Against:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
-**What it does:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
+**What it does:** Searches for su, , magisk. Detects mounts, , s. Kills the app if root.
 
 ### 5) VM Integrity
 
@@ -76,9 +76,9 @@ Kov-Sec is a professional Android application protection platform. It converts y
 
 **What it protects:** Detects libraries injected into the process.
 
-**Against:** LD_PRELOAD, ptrace inject, hooking libraries, malware.
+**Against:** , ptrace inject, hooking libraries, malware.
 
-**What it does:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
+**What it does:** Scans /self/maps. Verifies all .so come from the app. Kills the app if strange.
 
 ### 10) Remove Logs
 

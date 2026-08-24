@@ -14,7 +14,7 @@ Kov-Sec é uma plataforma profissional de proteção de aplicativos Android. Con
 
 **Contra:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**O que faz:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
+**O que faz:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
 
 ### 2) Anti-Debug
 
@@ -22,7 +22,7 @@ Kov-Sec é uma plataforma profissional de proteção de aplicativos Android. Con
 
 **Contra:** gdb, lldb, Android Studio debugger, ptrace.
 
-**O que faz:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
+**O que faz:** Detects debug flag (). Detects ptrace. Kills the app if a debugger is found.
 
 ### 3) Anti-Emulador
 
@@ -30,7 +30,7 @@ Kov-Sec é uma plataforma profissional de proteção de aplicativos Android. Con
 
 **Contra:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
 
-**O que faz:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
+**O que faz:** Detects emulator properties, files (), fake sensors. Kills the app if detected.
 
 ### 4) Detecção de Root
 
@@ -38,7 +38,7 @@ Kov-Sec é uma plataforma profissional de proteção de aplicativos Android. Con
 
 **Contra:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
-**O que faz:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
+**O que faz:** Searches for su, , magisk. Detects mounts, , s. Kills the app if root.
 
 ### 5) Integridade da VM
 
@@ -76,9 +76,9 @@ Kov-Sec é uma plataforma profissional de proteção de aplicativos Android. Con
 
 **O que protege:** Detects libraries injected into the process.
 
-**Contra:** LD_PRELOAD, ptrace inject, hooking libraries, malware.
+**Contra:** , ptrace inject, hooking libraries, malware.
 
-**O que faz:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
+**O que faz:** Scans /self/maps. Verifies all .so come from the app. Kills the app if strange.
 
 ### 10) Remover Logs
 

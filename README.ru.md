@@ -14,7 +14,7 @@ Kov-Sec — профессиональная платформа защиты And
 
 **Против:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**Что делает:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
+**Что делает:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
 
 ### 2) Анти-отладка
 
@@ -22,7 +22,7 @@ Kov-Sec — профессиональная платформа защиты And
 
 **Против:** gdb, lldb, Android Studio debugger, ptrace.
 
-**Что делает:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
+**Что делает:** Detects debug flag (). Detects ptrace. Kills the app if a debugger is found.
 
 ### 3) Анти-эмулятор
 
@@ -30,7 +30,7 @@ Kov-Sec — профессиональная платформа защиты And
 
 **Против:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
 
-**Что делает:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
+**Что делает:** Detects emulator properties, files (), fake sensors. Kills the app if detected.
 
 ### 4) Обнаружение Root
 
@@ -38,7 +38,7 @@ Kov-Sec — профессиональная платформа защиты And
 
 **Против:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
-**Что делает:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
+**Что делает:** Searches for su, , magisk. Detects mounts, , s. Kills the app if root.
 
 ### 5) Целостность VM
 
@@ -76,9 +76,9 @@ Kov-Sec — профессиональная платформа защиты And
 
 **Что защищает:** Detects libraries injected into the process.
 
-**Против:** LD_PRELOAD, ptrace inject, hooking libraries, malware.
+**Против:** , ptrace inject, hooking libraries, malware.
 
-**Что делает:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
+**Что делает:** Scans /self/maps. Verifies all .so come from the app. Kills the app if strange.
 
 ### 10) Удаление логов
 

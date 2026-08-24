@@ -14,7 +14,7 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **के खिलाफ:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**यह क्या करता है:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
+**यह क्या करता है:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
 
 ### 2) एंटी-डीबग
 
@@ -22,7 +22,7 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **के खिलाफ:** gdb, lldb, Android Studio debugger, ptrace.
 
-**यह क्या करता है:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
+**यह क्या करता है:** Detects debug flag (). Detects ptrace. Kills the app if a debugger is found.
 
 ### 3) एंटी-एमुलेटर
 
@@ -30,7 +30,7 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **के खिलाफ:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
 
-**यह क्या करता है:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
+**यह क्या करता है:** Detects emulator properties, files (), fake sensors. Kills the app if detected.
 
 ### 4) रूट डिटेक्शन
 
@@ -38,7 +38,7 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **के खिलाफ:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
-**यह क्या करता है:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
+**यह क्या करता है:** Searches for su, , magisk. Detects mounts, , s. Kills the app if root.
 
 ### 5) VM अखंडता
 
@@ -76,9 +76,9 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **यह क्या सुरक्षा करता है:** Detects libraries injected into the process.
 
-**के खिलाफ:** LD_PRELOAD, ptrace inject, hooking libraries, malware.
+**के खिलाफ:** , ptrace inject, hooking libraries, malware.
 
-**यह क्या करता है:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
+**यह क्या करता है:** Scans /self/maps. Verifies all .so come from the app. Kills the app if strange.
 
 ### 10) लॉग हटाएं
 

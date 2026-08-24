@@ -14,7 +14,7 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Contra:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**Qué hace:** Escanea mapas de memoria por librerías de hooking. Compara syscalls para detectar PLT/GOT hooks. Mata la app si hay algo sospechoso.
+**Qué hace:** Escanea el proceso en busca de hooks. Detecta cualquier intento de manipulación. Mata la app si hay algo sospechoso.
 
 ### 2) Anti-Debug
 
@@ -22,7 +22,7 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Contra:** gdb, lldb, debugger de Android Studio, ptrace.
 
-**Qué hace:** Detecta el flag de debug (TracerPid). Detecta ptrace. Mata la app si hay debugger.
+**Qué hace:** Detecta si hay un debugger adjunto. Detecta ptrace. Mata la app si hay debugger.
 
 ### 3) Anti-Emulador
 
@@ -30,7 +30,7 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Contra:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
 
-**Qué hace:** Detecta propiedades de emulador, archivos (QEMU), sensores falsos. Mata la app si detecta.
+**Qué hace:** Detecta características que solo tienen los emuladores. Mata la app si detecta.
 
 ### 4) Detección Root
 
@@ -38,7 +38,7 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Contra:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
-**Qué hace:** Busca su, busybox, magisk. Detecta mounts, tmpfs, supercalls. Mata la app si hay root.
+**Qué hace:** Detecta dispositivos rooteados con múltiples técnicas avanzadas. Mata la app si hay root.
 
 ### 5) Integridad de VM
 
@@ -76,9 +76,9 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Qué protege:** Detecta librerías inyectadas en el proceso.
 
-**Contra:** LD_PRELOAD, ptrace inject, librerías de hooking, malware.
+**Contra:** Librerías inyectadas por hackers, librerías de hooking y malware.
 
-**Qué hace:** Escanea /proc/self/maps. Verifica que todos los .so vienen de la app. Mata la app si hay algo raro.
+**Qué hace:** Verifica que todas las librerías cargadas vienen de la app. Mata la app si hay algo raro.
 
 ### 10) Eliminar Logs
 

@@ -47,7 +47,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **Against:** Frida / Frida Gadget, Xposed / LSPosed / EdXposed, Zygisk, Substrate / Cydia.
 
-**What it does:** Scans the process memory maps for injected hooking libraries. Compares syscalls (raw asm vs libc) to detect PLT/GOT hooks. If something suspicious is detected, it kills the app.
+**What it does:** Scans the running process for any sign of hooking frameworks. If something suspicious is detected, it immediately stops the app.
 
 ---
 
@@ -57,7 +57,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **Against:** gdb / lldb / Android Studio debugger, debuggers that attach to the process to read memory, bypass checks or steal data.
 
-**What it does:** Detects if the process has the debug flag active (TracerPid in /proc/self/status). Detects ptrace by third parties. If a debugger is detected, it kills the app.
+**What it does:** Checks whether a debugger is attached to the process. If one is detected, it immediately stops the app.
 
 ---
 
@@ -67,7 +67,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **Against:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion — Android emulators used to automate, clone or exploit the app.
 
-**What it does:** Detects system properties typical of emulators. Detects emulator files (QEMU, etc.). Detects fake sensors and hardware characteristics that don't exist on real devices. If an emulator is detected, it kills the app.
+**What it does:** Detects characteristics that only emulators have, including fake hardware and sensors. If an emulator is detected, it immediately stops the app.
 
 ---
 
@@ -77,7 +77,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **Against:** Magisk, KernelSU, APatch, SuSFS, Shamiko — any rooted device that allows injecting, modifying or reading the app with full privileges.
 
-**What it does:** Searches for root binaries (su, busybox, magisk). Searches for root paths (/data/adb, /system/xbin/su). Detects Magisk mounts (overlayfs) and SuSFS (tmpfs). Detects KernelSU/APatch supercalls. Checks errno divergence (SuSFS lying). Scans kallsyms for modified kernel symbols. If root is detected, it kills the app.
+**What it does:** Detects rooted devices using multiple advanced techniques, including modified kernels and hidden root frameworks. If root is detected, it immediately stops the app.
 
 ---
 
@@ -87,7 +87,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **Against:** Memory patches on the protected .so, VM modification to unprotected the code, hooks that redirect VM functions.
 
-**What it does:** Converts the app code into bytecode executed by an internal VM (layered protection). Verifies the bytecode was not modified. Verifies VM integrity with checksums. If someone patches the VM, it kills the app.
+**What it does:** Converts the app code into bytecode executed by an internal VM (layered protection). Verifies the code integrity. If someone tries to modify the VM, it stops the app.
 
 ---
 
@@ -125,9 +125,9 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it protects:** Detects libraries injected into the process.
 
-**Against:** .so injection by hackers (LD_PRELOAD, ptrace inject), hooking libraries loaded into the process, malware that injects into legitimate apps.
+**Against:** Libraries injected into the process by hackers, hooking libraries, and malware that injects into legitimate apps.
 
-**What it does:** Scans /proc/self/maps looking for libraries that shouldn't be there. Verifies all loaded .so come from the app. If a strange library is found, it kills the app.
+**What it does:** Verifies that all loaded libraries come from the app itself. If a strange library is found, it stops the app.
 
 ---
 

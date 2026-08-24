@@ -14,7 +14,7 @@ Kov-Sec はプロ仕様の Android アプリ保護プラットフォームです
 
 **対象:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**動作:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
+**動作:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
 
 ### 2) アンチデバッグ
 
@@ -22,7 +22,7 @@ Kov-Sec はプロ仕様の Android アプリ保護プラットフォームです
 
 **対象:** gdb, lldb, Android Studio debugger, ptrace.
 
-**動作:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
+**動作:** Detects debug flag (). Detects ptrace. Kills the app if a debugger is found.
 
 ### 3) アンチエミュレータ
 
@@ -30,7 +30,7 @@ Kov-Sec はプロ仕様の Android アプリ保護プラットフォームです
 
 **対象:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
 
-**動作:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
+**動作:** Detects emulator properties, files (), fake sensors. Kills the app if detected.
 
 ### 4) ルート検出
 
@@ -38,7 +38,7 @@ Kov-Sec はプロ仕様の Android アプリ保護プラットフォームです
 
 **対象:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
-**動作:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
+**動作:** Searches for su, , magisk. Detects mounts, , s. Kills the app if root.
 
 ### 5) VM完全性
 
@@ -76,9 +76,9 @@ Kov-Sec はプロ仕様の Android アプリ保護プラットフォームです
 
 **保護するもの:** Detects libraries injected into the process.
 
-**対象:** LD_PRELOAD, ptrace inject, hooking libraries, malware.
+**対象:** , ptrace inject, hooking libraries, malware.
 
-**動作:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
+**動作:** Scans /self/maps. Verifies all .so come from the app. Kills the app if strange.
 
 ### 10) ログ削除
 

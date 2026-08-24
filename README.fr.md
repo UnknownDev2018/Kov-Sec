@@ -14,7 +14,7 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Contre:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**Ce qu'il fait:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
+**Ce qu'il fait:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
 
 ### 2) Anti-Debug
 
@@ -22,7 +22,7 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Contre:** gdb, lldb, Android Studio debugger, ptrace.
 
-**Ce qu'il fait:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
+**Ce qu'il fait:** Detects debug flag (). Detects ptrace. Kills the app if a debugger is found.
 
 ### 3) Anti-Émulateur
 
@@ -30,7 +30,7 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Contre:** BlueStacks, Nox, LDPlayer, MEmu, Genymotion.
 
-**Ce qu'il fait:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
+**Ce qu'il fait:** Detects emulator properties, files (), fake sensors. Kills the app if detected.
 
 ### 4) Détection Root
 
@@ -38,7 +38,7 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Contre:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
-**Ce qu'il fait:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
+**Ce qu'il fait:** Searches for su, , magisk. Detects mounts, , s. Kills the app if root.
 
 ### 5) Intégrité VM
 
@@ -76,9 +76,9 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Ce qu'il protège:** Detects libraries injected into the process.
 
-**Contre:** LD_PRELOAD, ptrace inject, hooking libraries, malware.
+**Contre:** , ptrace inject, hooking libraries, malware.
 
-**Ce qu'il fait:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
+**Ce qu'il fait:** Scans /self/maps. Verifies all .so come from the app. Kills the app if strange.
 
 ### 10) Suppression des Logs
 
