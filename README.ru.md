@@ -54,7 +54,7 @@ Kov-Sec — профессиональная платформа защиты And
 
 **Против:** Repackaging with a fake key, malware pretending to be your app.
 
-**Что делает:** Calculates V1+V2/V3 hash. Compares disk vs RAM. Kills the app if mismatched.
+**Что делает:** Calculates the V1+V2/V3 signature hash and compares it with the expected signature. Stops the app if mismatched.
 
 ### 7) Обнаружение DEX-инъекций
 

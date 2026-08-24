@@ -97,7 +97,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **Against:** Someone downloads your APK, modifies it and re-signs it with their own key (repackaging). Malware pretending to be your app.
 
-**What it does:** Calculates the hash of the V1+V2/V3 APK signature. Compares it against the embedded expected signature. Compares APK content on disk vs in RAM. If the signature doesn't match, it kills the app.
+**What it does:** Calculates the hash of the V1+V2/V3 APK signature and compares it against the expected signature. If it doesn't match, it stops the app.
 
 ---
 

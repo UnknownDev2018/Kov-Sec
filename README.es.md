@@ -54,7 +54,7 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Contra:** Reempaquetado con clave falsa, malware haciéndose pasar por tu app.
 
-**Qué hace:** Calcula hash V1+V2/V3. Compara disco vs RAM. Mata la app si no coincide.
+**Qué hace:** Calcula el hash de la firma V1+V2/V3 y lo compara con la firma esperada. Detiene la app si no coincide.
 
 ### 7) Detección de Inyección DEX
 

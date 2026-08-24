@@ -54,7 +54,7 @@ Kov-Sec はプロ仕様の Android アプリ保護プラットフォームです
 
 **対象:** Repackaging with a fake key, malware pretending to be your app.
 
-**動作:** Calculates V1+V2/V3 hash. Compares disk vs RAM. Kills the app if mismatched.
+**動作:** Calculates the V1+V2/V3 signature hash and compares it with the expected signature. Stops the app if mismatched.
 
 ### 7) DEX注入検出
 

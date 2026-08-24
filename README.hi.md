@@ -54,7 +54,7 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **के खिलाफ:** Repackaging with a fake key, malware pretending to be your app.
 
-**यह क्या करता है:** Calculates V1+V2/V3 hash. Compares disk vs RAM. Kills the app if mismatched.
+**यह क्या करता है:** Calculates the V1+V2/V3 signature hash and compares it with the expected signature. Stops the app if mismatched.
 
 ### 7) DEX इंजेक्शन
 

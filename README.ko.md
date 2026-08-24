@@ -54,7 +54,7 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **대상:** Repackaging with a fake key, malware pretending to be your app.
 
-**동작:** Calculates V1+V2/V3 hash. Compares disk vs RAM. Kills the app if mismatched.
+**동작:** Calculates the V1+V2/V3 signature hash and compares it with the expected signature. Stops the app if mismatched.
 
 ### 7) DEX 주입 감지
 
