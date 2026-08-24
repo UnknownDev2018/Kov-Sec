@@ -6,9 +6,7 @@
 
 Kov-Sec एक पेशेवर Android एप्लिकेशन सुरक्षा प्लेटफ़ॉर्म है। यह आपके ऐप के बाइटकोड को आंतरिक वर्चुअल मशीन (VM) में बदलता है और कई सुरक्षा परतें लागू करता है जो रिवर्स इंजीनियरिंग, छेड़छाड़ और हैकिंग को अत्यंत कठिन बनाती हैं। आपका ऐप Google Play Store पर 100% कार्यात्मक रहता है — Play Store आवश्यकताओं, App Bundles (AAB) और APK वितरण के साथ पूरी तरह संगत। APK और AAB, सभी सिग्नेचर योजनाओं (V1/V2/V3), Android 7.0+ (API 21+) और सभी आर्किटेक्चर का समर्थन करता है।
 
-
 ## सुरक्षा विकल्प
-
 
 ### 1) एंटी-हुक
 
@@ -18,9 +16,6 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **यह क्या करता है:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
 
-**किसे चाहिए:** Banking apps, games with currency, streaming apps.
-
-
 ### 2) एंटी-डीबग
 
 **यह क्या सुरक्षा करता है:** Prevents dynamic debugging of the app.
@@ -28,9 +23,6 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 **के खिलाफ:** gdb, lldb, Android Studio debugger, ptrace.
 
 **यह क्या करता है:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
-
-**किसे चाहिए:** Apps with sensitive data, licenses, DRM, premium content.
-
 
 ### 3) एंटी-एमुलेटर
 
@@ -40,9 +32,6 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **यह क्या करता है:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
 
-**किसे चाहिए:** Games, reward apps, dating apps, bonus apps.
-
-
 ### 4) रूट डिटेक्शन
 
 **यह क्या सुरक्षा करता है:** Detects devices with root (superuser) permissions.
@@ -50,9 +39,6 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 **के खिलाफ:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
 **यह क्या करता है:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
-
-**किसे चाहिए:** Banking, competitive games, anti-fraud apps.
-
 
 ### 5) VM अखंडता
 
@@ -62,9 +48,6 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **यह क्या करता है:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
 
-**किसे चाहिए:** Everyone — makes code hard to reverse. Always recommended.
-
-
 ### 6) सिग्नेचर जांच
 
 **यह क्या सुरक्षा करता है:** Verifies the APK signature against repackaging.
@@ -72,9 +55,6 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 **के खिलाफ:** Repackaging with a fake key, malware pretending to be your app.
 
 **यह क्या करता है:** Calculates V1+V2/V3 hash. Compares disk vs RAM. Kills the app if mismatched.
-
-**किसे चाहिए:** Everyone — prevents app theft. Always recommended.
-
 
 ### 7) DEX इंजेक्शन
 
@@ -84,9 +64,6 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **यह क्या करता है:** Lists ClassLoaders and DexFiles. Compares against legitimate dex. Kills the app if extra DEX.
 
-**किसे चाहिए:** Games, paid apps, premium content.
-
-
 ### 8) ADB सुरक्षा
 
 **यह क्या सुरक्षा करता है:** Blocks ADB shell access on the device.
@@ -94,9 +71,6 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 **के खिलाफ:** ADB to view logs, extract files, inject commands.
 
 **यह क्या करता है:** Detects if ADB is enabled or USB debugging is connected. Kills the app if active.
-
-**किसे चाहिए:** Apps with sensitive info, payments, banking.
-
 
 ### 9) लाइब्रेरी इंजेक्शन
 
@@ -106,9 +80,6 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **यह क्या करता है:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
 
-**किसे चाहिए:** Everyone — base of anti-hook. Always recommended.
-
-
 ### 10) लॉग हटाएं
 
 **यह क्या सुरक्षा करता है:** Removes all Log.* calls from the DEX files.
@@ -117,36 +88,27 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **यह क्या करता है:** Removes Log.v/d/i/w/e calls. Reduces size. Removes attacker info.
 
-**किसे चाहिए:** Everyone. Always recommended.
-
-
 ## वैकल्पिक सुरक्षा
-
 
 ### 11) स्क्रीन शेयर ब्लॉक
 
 स्क्रीन शेयर ब्लॉक — स्क्रीन रिकॉर्डिंग रोकता है. कैप्चर का पता लगाता है. वैकल्पिक.
 
-
 ### 12) कीलॉगर ब्लॉक
 
 कीलॉगर ब्लॉक — कीलॉगर रोकता है. ओवरले का पता लगाता है. वैकल्पिक.
-
 
 ### 13) फर्जी GPS ब्लॉक
 
 फर्जी GPS ब्लॉक — GPS धोखाधड़ी रोकता है. मॉक लोकेशन का पता लगाता है. वैकल्पिक.
 
-
 ### 14) VPN / प्रॉक्सी ब्लॉक
 
 VPN / प्रॉक्सी ब्लॉक — VPN और MITM प्रॉक्सी का पता लगाता है. वैकल्पिक.
 
-
 ### 15) SSL पिनिंग
 
 SSL पिनिंग — MITM रोकने के लिए प्रमाणपत्र पिन करता है. वैकल्पिक.
-
 
 ## त्वरित सारांश
 

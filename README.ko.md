@@ -6,9 +6,7 @@
 
 Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트코드를 내부 가상 머신 (VM)으로 변환하고 리버스 엔지니어링, 변조, 해킹을 극도로 어렵게 만드는 여러 보호 계층을 적용합니다. 앱은 Google Play 스토어에서 100% 기능을 유지합니다 — Play 스토어 요구사항, App Bundle (AAB), APK 배포와 완벽 호환. APK 및 AAB, 모든 서명 방식 (V1/V2/V3), Android 7.0+ (API 21+), 모든 아키텍처 지원.
 
-
 ## 보호 옵션
-
 
 ### 1) 안티 후크
 
@@ -18,9 +16,6 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **동작:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
 
-**필요한 사람:** Banking apps, games with currency, streaming apps.
-
-
 ### 2) 안티 디버그
 
 **보호 내용:** Prevents dynamic debugging of the app.
@@ -28,9 +23,6 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 **대상:** gdb, lldb, Android Studio debugger, ptrace.
 
 **동작:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
-
-**필요한 사람:** Apps with sensitive data, licenses, DRM, premium content.
-
 
 ### 3) 안티 에뮬레이터
 
@@ -40,9 +32,6 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **동작:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
 
-**필요한 사람:** Games, reward apps, dating apps, bonus apps.
-
-
 ### 4) 루트 감지
 
 **보호 내용:** Detects devices with root (superuser) permissions.
@@ -50,9 +39,6 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 **대상:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
 **동작:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
-
-**필요한 사람:** Banking, competitive games, anti-fraud apps.
-
 
 ### 5) VM 무결성
 
@@ -62,9 +48,6 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **동작:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
 
-**필요한 사람:** Everyone — makes code hard to reverse. Always recommended.
-
-
 ### 6) 서명 확인
 
 **보호 내용:** Verifies the APK signature against repackaging.
@@ -72,9 +55,6 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 **대상:** Repackaging with a fake key, malware pretending to be your app.
 
 **동작:** Calculates V1+V2/V3 hash. Compares disk vs RAM. Kills the app if mismatched.
-
-**필요한 사람:** Everyone — prevents app theft. Always recommended.
-
 
 ### 7) DEX 주입 감지
 
@@ -84,9 +64,6 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **동작:** Lists ClassLoaders and DexFiles. Compares against legitimate dex. Kills the app if extra DEX.
 
-**필요한 사람:** Games, paid apps, premium content.
-
-
 ### 8) ADB 가드
 
 **보호 내용:** Blocks ADB shell access on the device.
@@ -94,9 +71,6 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 **대상:** ADB to view logs, extract files, inject commands.
 
 **동작:** Detects if ADB is enabled or USB debugging is connected. Kills the app if active.
-
-**필요한 사람:** Apps with sensitive info, payments, banking.
-
 
 ### 9) 라이브러리 주입 감지
 
@@ -106,9 +80,6 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **동작:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
 
-**필요한 사람:** Everyone — base of anti-hook. Always recommended.
-
-
 ### 10) 로그 제거
 
 **보호 내용:** Removes all Log.* calls from the DEX files.
@@ -117,36 +88,27 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **동작:** Removes Log.v/d/i/w/e calls. Reduces size. Removes attacker info.
 
-**필요한 사람:** Everyone. Always recommended.
-
-
 ## 선택 보호
-
 
 ### 11) 화면 공유 차단
 
 화면 공유 차단 — 화면 녹화 및 공유 방지. 캡처 감지. 선택.
 
-
 ### 12) 키로거 차단
 
 키로거 차단 — 키로거 및 입력 캡처 차단. 오버레이 감지. 선택.
-
 
 ### 13) 가짜 GPS 차단
 
 가짜 GPS 차단 — GPS 스푸핑 방지. 모의 위치 감지. 선택.
 
-
 ### 14) VPN / 프록시 차단
 
 VPN / 프록시 차단 — VPN 및 MITM 프록시 감지. tun0/wg0 감지. 선택.
 
-
 ### 15) SSL 핀닝
 
 SSL 핀닝 — MITM 방지를 위해 인증서 고정. 선택.
-
 
 ## 빠른 요약
 

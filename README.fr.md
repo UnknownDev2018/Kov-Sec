@@ -6,9 +6,7 @@
 
 Kov-Sec est une plateforme professionnelle de protection d'applications Android. Elle convertit le bytecode de votre application en machine virtuelle interne (VM) et applique plusieurs couches de protection rendant l'ingénierie inverse, la falsification et le piratage extrêmement difficiles. Votre application reste 100% fonctionnelle sur Google Play Store — entièrement compatible avec les exigences du Play Store, les App Bundles (AAB) et la distribution APK. Prend en charge APK et AAB, tous les schémas de signature (V1/V2/V3), Android 7.0+ (API 21+) et toutes les architectures.
 
-
 ## Options de Protection
-
 
 ### 1) Anti-Hook
 
@@ -18,9 +16,6 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Ce qu'il fait:** Scans memory maps for hooking libraries. Compares syscalls to detect PLT/GOT hooks. Kills the app if suspicious.
 
-**Qui en a besoin:** Banking apps, games with currency, streaming apps.
-
-
 ### 2) Anti-Debug
 
 **Ce qu'il protège:** Prevents dynamic debugging of the app.
@@ -28,9 +23,6 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 **Contre:** gdb, lldb, Android Studio debugger, ptrace.
 
 **Ce qu'il fait:** Detects debug flag (TracerPid). Detects ptrace. Kills the app if a debugger is found.
-
-**Qui en a besoin:** Apps with sensitive data, licenses, DRM, premium content.
-
 
 ### 3) Anti-Émulateur
 
@@ -40,9 +32,6 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Ce qu'il fait:** Detects emulator properties, files (QEMU), fake sensors. Kills the app if detected.
 
-**Qui en a besoin:** Games, reward apps, dating apps, bonus apps.
-
-
 ### 4) Détection Root
 
 **Ce qu'il protège:** Detects devices with root (superuser) permissions.
@@ -50,9 +39,6 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 **Contre:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
 **Ce qu'il fait:** Searches for su, busybox, magisk. Detects mounts, tmpfs, supercalls. Kills the app if root.
-
-**Qui en a besoin:** Banking, competitive games, anti-fraud apps.
-
 
 ### 5) Intégrité VM
 
@@ -62,9 +48,6 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Ce qu'il fait:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
 
-**Qui en a besoin:** Everyone — makes code hard to reverse. Always recommended.
-
-
 ### 6) Vérification de Signature
 
 **Ce qu'il protège:** Verifies the APK signature against repackaging.
@@ -72,9 +55,6 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 **Contre:** Repackaging with a fake key, malware pretending to be your app.
 
 **Ce qu'il fait:** Calculates V1+V2/V3 hash. Compares disk vs RAM. Kills the app if mismatched.
-
-**Qui en a besoin:** Everyone — prevents app theft. Always recommended.
-
 
 ### 7) Détection d'Injection DEX
 
@@ -84,9 +64,6 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Ce qu'il fait:** Lists ClassLoaders and DexFiles. Compares against legitimate dex. Kills the app if extra DEX.
 
-**Qui en a besoin:** Games, paid apps, premium content.
-
-
 ### 8) Protection ADB
 
 **Ce qu'il protège:** Blocks ADB shell access on the device.
@@ -94,9 +71,6 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 **Contre:** ADB to view logs, extract files, inject commands.
 
 **Ce qu'il fait:** Detects if ADB is enabled or USB debugging is connected. Kills the app if active.
-
-**Qui en a besoin:** Apps with sensitive info, payments, banking.
-
 
 ### 9) Détection d'Injection de Bibliothèques
 
@@ -106,9 +80,6 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Ce qu'il fait:** Scans /proc/self/maps. Verifies all .so come from the app. Kills the app if strange.
 
-**Qui en a besoin:** Everyone — base of anti-hook. Always recommended.
-
-
 ### 10) Suppression des Logs
 
 **Ce qu'il protège:** Removes all Log.* calls from the DEX files.
@@ -117,36 +88,27 @@ Kov-Sec est une plateforme professionnelle de protection d'applications Android.
 
 **Ce qu'il fait:** Removes Log.v/d/i/w/e calls. Reduces size. Removes attacker info.
 
-**Qui en a besoin:** Everyone. Always recommended.
-
-
 ## Protections Optionnelles
-
 
 ### 11) Blocage de partage d'écran
 
 Blocage de partage d'écran — Empêche l'enregistrement et le partage d'écran. Détecte la capture. Optionnel.
 
-
 ### 12) Blocage de keylogger
 
 Blocage de keylogger — Bloque les keyloggers et la capture de saisie. Détecte les overlays. Optionnel.
-
 
 ### 13) Blocage GPS factice
 
 Blocage GPS factice — Empêche la falsification du GPS. Détecte le mock location. Optionnel.
 
-
 ### 14) Blocage VPN / Proxy
 
 Blocage VPN / Proxy — Détecte les VPN et proxies MITM. Détecte tun0/wg0. Optionnel.
 
-
 ### 15) SSL Pinning
 
 SSL Pinning — Épingle les certificats contre MITM. Optionnel.
-
 
 ## Résumé Rapide
 

@@ -49,8 +49,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it does:** Scans the process memory maps for injected hooking libraries. Compares syscalls (raw asm vs libc) to detect PLT/GOT hooks. If something suspicious is detected, it kills the app.
 
-**Who needs it:** Banking apps, games with currency, streaming apps — any app that doesn't want to be manipulated by hackers.
-
 ---
 
 ### 2) Anti-Debug
@@ -60,8 +58,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 **Against:** gdb / lldb / Android Studio debugger, debuggers that attach to the process to read memory, bypass checks or steal data.
 
 **What it does:** Detects if the process has the debug flag active (TracerPid in /proc/self/status). Detects ptrace by third parties. If a debugger is detected, it kills the app.
-
-**Who needs it:** Apps with sensitive data, licenses, DRM, premium content.
 
 ---
 
@@ -73,8 +69,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it does:** Detects system properties typical of emulators. Detects emulator files (QEMU, etc.). Detects fake sensors and hardware characteristics that don't exist on real devices. If an emulator is detected, it kills the app.
 
-**Who needs it:** Games, reward apps, dating apps, apps that give registration bonuses.
-
 ---
 
 ### 4) Root Detection
@@ -84,8 +78,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 **Against:** Magisk, KernelSU, APatch, SuSFS, Shamiko — any rooted device that allows injecting, modifying or reading the app with full privileges.
 
 **What it does:** Searches for root binaries (su, busybox, magisk). Searches for root paths (/data/adb, /system/xbin/su). Detects Magisk mounts (overlayfs) and SuSFS (tmpfs). Detects KernelSU/APatch supercalls. Checks errno divergence (SuSFS lying). Scans kallsyms for modified kernel symbols. If root is detected, it kills the app.
-
-**Who needs it:** Banking, competitive games, reward apps, any anti-fraud app.
 
 ---
 
@@ -97,8 +89,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it does:** Converts the app code into bytecode executed by an internal VM (layered protection). Verifies the bytecode was not modified. Verifies VM integrity with checksums. If someone patches the VM, it kills the app.
 
-**Who needs it:** Everyone — it's what makes the code hard to reverse. **Always recommended.**
-
 ---
 
 ### 6) Signature Check
@@ -108,8 +98,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 **Against:** Someone downloads your APK, modifies it and re-signs it with their own key (repackaging). Malware pretending to be your app.
 
 **What it does:** Calculates the hash of the V1+V2/V3 APK signature. Compares it against the embedded expected signature. Compares APK content on disk vs in RAM. If the signature doesn't match, it kills the app.
-
-**Who needs it:** Everyone — prevents your app from being stolen and redistributed with malware. **Always recommended.**
 
 ---
 
@@ -121,8 +109,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it does:** Lists the ClassLoaders and DexFiles loaded. Compares against the legitimate dex of the APK. If an extra DEX is loaded, it kills the app.
 
-**Who needs it:** Games, paid apps, apps with premium content.
-
 ---
 
 ### 8) ADB Guard
@@ -132,8 +118,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 **Against:** Someone connects the phone to a PC and uses ADB to view internal logs, extract app files, inject commands or get shell access to the process.
 
 **What it does:** Detects if ADB is enabled. Detects USB debugging connections. If ADB is active, it kills the app.
-
-**Who needs it:** Apps with sensitive information, payments, banking.
 
 ---
 
@@ -145,8 +129,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it does:** Scans /proc/self/maps looking for libraries that shouldn't be there. Verifies all loaded .so come from the app. If a strange library is found, it kills the app.
 
-**Who needs it:** Everyone — it's the base of anti-hook. **Always recommended.**
-
 ---
 
 ### 10) Remove Logs
@@ -156,8 +138,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 **Against:** Information leaked by logs that hackers use to understand your logic, malware that reads logs from other apps, easier debugging for the attacker.
 
 **What it does:** Goes through all DEX files and removes Log.v, Log.d, Log.i, Log.w, Log.e calls. Reduces the app size. Removes useful information for the attacker.
-
-**Who needs it:** Everyone. **Always recommended.**
 
 ---
 
@@ -171,8 +151,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it does:** Detects if the app content is being captured (MediaProjection, presentation, virtual display). Hides or blocks content if capture is detected. Detects screenshots during sensitive actions.
 
-**Who needs it:** Streaming, exclusive content apps, dating, banking. **Optional — may affect legitimate features.**
-
 ---
 
 ### 12) Keylogger Block
@@ -182,8 +160,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 **Against:** Keyloggers capturing what you type, input capture via malicious overlays, reading the keyboard of other apps, apps that steal passwords while you type.
 
 **What it does:** Detects overlays of other apps on top of yours. Detects suspicious accessibility services. Verifies input is not being intercepted.
-
-**Who needs it:** Banking, login, apps with passwords. **Optional.**
 
 ---
 
@@ -195,8 +171,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it does:** Detects if the system is in mock location mode. Detects if location providers are being faked. Detects active fake GPS apps. If fake GPS is detected, it kills the app.
 
-**Who needs it:** Apps with geolocation, location games, region-locked content apps. **Optional.**
-
 ---
 
 ### 14) VPN / Proxy Block
@@ -207,8 +181,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it does:** Detects VPN network interfaces (tun0, wg0, pp0). Detects configured proxy connections. Detects VPN apps running on the device. Compares real IP vs server IP.
 
-**Who needs it:** Banking, region-locked apps, anti-fraud apps. **Optional — may bother legitimate VPN users.**
-
 ---
 
 ### 15) SSL Pinning
@@ -218,8 +190,6 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 **Against:** SSL interception (Burp Suite, Charles, mitmproxy), fake certificates installed on the device, Man-in-the-Middle attacks reading your HTTPS traffic, hackers analyzing your API.
 
 **What it does:** The app ONLY trusts your server's certificate/public key (pin). Rejects any other certificate even if installed on the system. Prevents a proxy from decrypting and reading the traffic.
-
-**Who needs it:** Banking, apps with their own API, any app sending sensitive data. **Optional — requires stable server certs.**
 
 ---
 

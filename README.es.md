@@ -6,9 +6,7 @@
 
 Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Convierte el bytecode de tu app en una máquina virtual interna (VM) y aplica múltiples capas de endurecimiento que hacen extremadamente difícil la ingeniería inversa, manipulación y hacking. Tu app sigue siendo 100% funcional en Google Play Store — totalmente compatible con los requisitos de Play Store, App Bundles (AAB) y distribución APK. Soporta APK y AAB, todos los esquemas de firma (V1/V2/V3), Android 7.0+ (API 21+) y todas las arquitecturas (arm64-v8a, armeabi-v7a, x86, x86_64).
 
-
 ## Opciones de Protección
-
 
 ### 1) Anti-Hook
 
@@ -18,9 +16,6 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Qué hace:** Escanea mapas de memoria por librerías de hooking. Compara syscalls para detectar PLT/GOT hooks. Mata la app si hay algo sospechoso.
 
-**Quién lo necesita:** Apps bancarias, juegos con moneda, streaming.
-
-
 ### 2) Anti-Debug
 
 **Qué protege:** Evita la depuración dinámica de la app.
@@ -28,9 +23,6 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 **Contra:** gdb, lldb, debugger de Android Studio, ptrace.
 
 **Qué hace:** Detecta el flag de debug (TracerPid). Detecta ptrace. Mata la app si hay debugger.
-
-**Quién lo necesita:** Apps con datos sensibles, licencias, DRM, contenido premium.
-
 
 ### 3) Anti-Emulador
 
@@ -40,9 +32,6 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Qué hace:** Detecta propiedades de emulador, archivos (QEMU), sensores falsos. Mata la app si detecta.
 
-**Quién lo necesita:** Juegos, apps de recompensas, citas, bonos.
-
-
 ### 4) Detección Root
 
 **Qué protege:** Detecta dispositivos con root.
@@ -50,9 +39,6 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 **Contra:** Magisk, KernelSU, APatch, SuSFS, Shamiko.
 
 **Qué hace:** Busca su, busybox, magisk. Detecta mounts, tmpfs, supercalls. Mata la app si hay root.
-
-**Quién lo necesita:** Banca, juegos competitivos, anti-fraude.
-
 
 ### 5) Integridad de VM
 
@@ -62,9 +48,6 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Qué hace:** Convierte el código a bytecode VM. Verifica con checksums. Mata la app si se parchea.
 
-**Quién lo necesita:** Todos — hace difícil revertir el código. Siempre recomendado.
-
-
 ### 6) Verificación de Firma
 
 **Qué protege:** Verifica la firma del APK contra reempaquetado.
@@ -72,9 +55,6 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 **Contra:** Reempaquetado con clave falsa, malware haciéndose pasar por tu app.
 
 **Qué hace:** Calcula hash V1+V2/V3. Compara disco vs RAM. Mata la app si no coincide.
-
-**Quién lo necesita:** Todos — evita el robo de tu app. Siempre recomendado.
-
 
 ### 7) Detección de Inyección DEX
 
@@ -84,9 +64,6 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Qué hace:** Lista ClassLoaders y DexFiles. Compara contra los DEX legítimos. Mata la app si hay DEX extra.
 
-**Quién lo necesita:** Juegos, apps de pago, contenido premium.
-
-
 ### 8) Guardia ADB
 
 **Qué protege:** Bloquea acceso ADB al dispositivo.
@@ -94,9 +71,6 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 **Contra:** ADB para ver logs, extraer archivos, inyectar comandos.
 
 **Qué hace:** Detecta si ADB está activo o hay depuración USB. Mata la app si está activo.
-
-**Quién lo necesita:** Apps con información sensible, pagos, banca.
-
 
 ### 9) Detección de Inyección de Librerías
 
@@ -106,9 +80,6 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Qué hace:** Escanea /proc/self/maps. Verifica que todos los .so vienen de la app. Mata la app si hay algo raro.
 
-**Quién lo necesita:** Todos — base del anti-hook. Siempre recomendado.
-
-
 ### 10) Eliminar Logs
 
 **Qué protege:** Elimina todas las llamadas Log.* de los DEX.
@@ -117,36 +88,27 @@ Kov-Sec es una plataforma profesional de protección de aplicaciones Android. Co
 
 **Qué hace:** Elimina llamadas Log.v/d/i/w/e. Reduce tamaño. Elimina info para atacantes.
 
-**Quién lo necesita:** Todos. Siempre recomendado.
-
-
 ## Protecciones Opcionales
-
 
 ### 11) Bloqueo de Pantalla
 
 Bloqueo de Pantalla — Evita grabación y compartir pantalla. Detecta captura (MediaProjection, virtual display). Opcional — puede afectar funciones legítimas.
 
-
 ### 12) Bloqueo de Keylogger
 
 Bloqueo de Keylogger — Bloquea keyloggers y captura de entrada. Detecta overlays y servicios de accesibilidad sospechosos. Opcional.
-
 
 ### 13) Bloqueo de GPS Falso
 
 Bloqueo de GPS Falso — Evita la suplantación de GPS. Detecta modo mock location y proveedores falsos. Opcional.
 
-
 ### 14) Bloqueo de VPN / Proxy
 
 Bloqueo de VPN / Proxy — Detecta VPNs y proxies MITM. Detecta interfaces tun0/wg0 y conexiones proxy. Opcional.
 
-
 ### 15) SSL Pinning
 
 SSL Pinning — Fija certificados para evitar MITM. La app solo confía en tu certificado. Opcional — requiere certificados estables.
-
 
 ## Resumen Rápido
 
