@@ -43,7 +43,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 ### 1) Anti-Hook
 
-**What it protects:** Detects and blocks hooking frameworks that modify your app's behavior in memory.
+**What it protects:** Detects and blocks hooking frameworks that try to modify your app's behavior.
 
 **Against:** Frida / Frida Gadget, Xposed / LSPosed / EdXposed, Zygisk, Substrate / Cydia.
 
@@ -55,7 +55,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it protects:** Prevents dynamic debugging of the app.
 
-**Against:** gdb / lldb / Android Studio debugger, debuggers that attach to the process to read memory, bypass checks or steal data.
+**Against:** gdb / lldb / Android Studio debugger, debuggers that attach to the process to bypass checks or steal data.
 
 **What it does:** Checks whether a debugger is attached to the process. If one is detected, it immediately stops the app.
 
@@ -85,7 +85,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 **What it protects:** The virtual machine (VM) that interprets your protected code.
 
-**Against:** Memory patches on the protected .so, VM modification to unprotected the code, hooks that redirect VM functions.
+**Against:** Code modification, VM modification, hooks that redirect VM functions.
 
 **What it does:** Converts the app code into bytecode executed by an internal VM (layered protection). Verifies the code integrity. If someone tries to modify the VM, it stops the app.
 
@@ -103,7 +103,7 @@ Your app remains **100% functional on Google Play Store** — fully compatible w
 
 ### 7) DEX Injection Detection
 
-**What it protects:** Detects DEX loaded in memory that don't come from the APK.
+**What it protects:** Detects DEX files that don't come from the original APK.
 
 **Against:** Dex code injection at runtime, frameworks that load malicious classes on the fly, game modifiers that inject code.
 

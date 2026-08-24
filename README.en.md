@@ -10,11 +10,11 @@ Kov-Sec is a professional Android application protection platform. It converts y
 
 ### 1) Anti-Hook
 
-**What it protects:** Detects and blocks hooking frameworks that modify your app's behavior in memory.
+**What it protects:** Detects and blocks hooking frameworks that try to modify your app's behavior.
 
 **Against:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**What it does:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
+**What it does:** Scans the running process for any sign of hooking. If something suspicious is detected, it stops the app.
 
 ### 2) Anti-Debug
 
@@ -44,7 +44,7 @@ Kov-Sec is a professional Android application protection platform. It converts y
 
 **What it protects:** Protects the virtual machine (VM) that interprets your protected code.
 
-**Against:** Memory patches, VM modification, hooks that redirect VM functions.
+**Against:** Code modification, VM modification, hooks that redirect VM functions.
 
 **What it does:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
 

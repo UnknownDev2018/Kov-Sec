@@ -10,11 +10,11 @@ Kov-Sec はプロ仕様の Android アプリ保護プラットフォームです
 
 ### 1) アンチフック
 
-**保護するもの:** Detects and blocks hooking frameworks that modify your app's behavior in memory.
+**保護するもの:** Detects and blocks hooking frameworks that try to modify your app's behavior.
 
 **対象:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**動作:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
+**動作:** Scans the running process for any sign of hooking. If something suspicious is detected, it stops the app.
 
 ### 2) アンチデバッグ
 
@@ -44,7 +44,7 @@ Kov-Sec はプロ仕様の Android アプリ保護プラットフォームです
 
 **保護するもの:** Protects the virtual machine (VM) that interprets your protected code.
 
-**対象:** Memory patches, VM modification, hooks that redirect VM functions.
+**対象:** Code modification, VM modification, hooks that redirect VM functions.
 
 **動作:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
 

@@ -10,11 +10,11 @@ Kov-Sec — профессиональная платформа защиты And
 
 ### 1) Анти-хук
 
-**Что защищает:** Detects and blocks hooking frameworks that modify your app's behavior in memory.
+**Что защищает:** Detects and blocks hooking frameworks that try to modify your app's behavior.
 
 **Против:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**Что делает:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
+**Что делает:** Scans the running process for any sign of hooking. If something suspicious is detected, it stops the app.
 
 ### 2) Анти-отладка
 
@@ -44,7 +44,7 @@ Kov-Sec — профессиональная платформа защиты And
 
 **Что защищает:** Protects the virtual machine (VM) that interprets your protected code.
 
-**Против:** Memory patches, VM modification, hooks that redirect VM functions.
+**Против:** Code modification, VM modification, hooks that redirect VM functions.
 
 **Что делает:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
 

@@ -10,11 +10,11 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 ### 1) 안티 후크
 
-**보호 내용:** Detects and blocks hooking frameworks that modify your app's behavior in memory.
+**보호 내용:** Detects and blocks hooking frameworks that try to modify your app's behavior.
 
 **대상:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**동작:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
+**동작:** Scans the running process for any sign of hooking. If something suspicious is detected, it stops the app.
 
 ### 2) 안티 디버그
 
@@ -44,7 +44,7 @@ Kov-Sec은 전문가급 Android 앱 보호 플랫폼입니다. 앱의 바이트�
 
 **보호 내용:** Protects the virtual machine (VM) that interprets your protected code.
 
-**대상:** Memory patches, VM modification, hooks that redirect VM functions.
+**대상:** Code modification, VM modification, hooks that redirect VM functions.
 
 **동작:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
 

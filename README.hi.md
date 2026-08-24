@@ -10,11 +10,11 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 ### 1) एंटी-हुक
 
-**यह क्या सुरक्षा करता है:** Detects and blocks hooking frameworks that modify your app's behavior in memory.
+**यह क्या सुरक्षा करता है:** Detects and blocks hooking frameworks that try to modify your app's behavior.
 
 **के खिलाफ:** Frida, Xposed, LSPosed, EdXposed, Zygisk, Substrate, Cydia.
 
-**यह क्या करता है:** Scans memory maps for hooking libraries. Compares s to detect / hooks. Kills the app if suspicious.
+**यह क्या करता है:** Scans the running process for any sign of hooking. If something suspicious is detected, it stops the app.
 
 ### 2) एंटी-डीबग
 
@@ -44,7 +44,7 @@ Kov-Sec एक पेशेवर Android एप्लिकेशन सुर�
 
 **यह क्या सुरक्षा करता है:** Protects the virtual machine (VM) that interprets your protected code.
 
-**के खिलाफ:** Memory patches, VM modification, hooks that redirect VM functions.
+**के खिलाफ:** Code modification, VM modification, hooks that redirect VM functions.
 
 **यह क्या करता है:** Converts code to VM bytecode. Verifies with checksums. Kills the app if patched.
 
