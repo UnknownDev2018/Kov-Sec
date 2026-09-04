@@ -117,4 +117,4 @@ VM Integrity, Signature Check, Lib Injection, Remove Logs — always recommended
 ---
 
 © Kov-Sec. All rights reserved. https://kov-sec.com
-<!-- Last update: 2026-09-04 11:25 UTC -->
+<!-- Last update: 2026-09-04 11:30 UTC -->
